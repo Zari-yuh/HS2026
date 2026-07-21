@@ -1,3 +1,4 @@
+import random
 # ============================================================
 # LAB 7  -  MY OWN ORDERING APP
 # Week 7  -  Hack the Hood
@@ -111,6 +112,16 @@ class Cart:
 store = {"1": item1, "2": item2, "3": item3, "4": item4}
 cart = Cart()
 
+welcome_message = ["Welcome to our store!", "Thank you for shopping with us!", "Hope you're having a great day!"]
+print(random.choice(welcome_message))
+
+item1.set_price(0.49)
+print("Sale!" + item1.name + " is on sale for $" + str(item1.price))
+
+print("\nMenu")
+for number, item in store.items():
+    print(number + ". " + item.name + " - $" + str(item.price))
+
 while True:
     pick = input("What would you like to add to your cart? (1-4) Or type 'done' to checkout. ")
     if pick == "done":
@@ -119,7 +130,13 @@ while True:
         cart.add(store[pick])
         print(f"Added {store[pick].name} to your cart.")
     else:
-        print("Invalid choice. Please try again.")
+        print("So sorry, that's not on our menu! What else would you like?")
+
+print("\nReceipt")
+for item in cart.items:
+    print(item.name + " - $" + str(item.price))
+
+print("You bought " + str(len(cart.items)) + " item(s).")
 
 total = 0
 for item in cart.items:
